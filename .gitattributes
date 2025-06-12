@@ -1,0 +1,2 @@
+model/20250612_RFM.pkl filter=lfs diff=lfs merge=lfs -text
+20250612_RFM.pkl filter=lfs diff=lfs merge=lfs -text
