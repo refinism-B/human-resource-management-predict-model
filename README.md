@@ -1,6 +1,9 @@
 # 直播錄影人力預測系統
 這是一個ML專案，功能在於根據專案需求，預測需要安排的人力。
 
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/) [![Streamlit](https://img.shields.io/badge/Streamlit-Enabled-green)](https://streamlit.io/) [![Last Commit](https://img.shields.io/github/last-commit/refinism-B/human-resource-management-predict-model)](https://github.com/refinism-B/human-resource-management-predict-model/commits/main) ![Machine Learning](https://img.shields.io/badge/Tech-Machine%20Learning-blue)
+
+
 ## 簡介
 - 在直播視訊行業，**人力的需求非常彈性**，根據需求可能需要8-10人，也可能只需要2-3人。
 - 高度彈性使人力安排工作非常花時間精力，因為每個專案都需客製化分派。
