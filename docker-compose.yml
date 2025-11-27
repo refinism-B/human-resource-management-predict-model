@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  streamlit-app:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app  # 可選，讓你本地程式碼變更即時反映
+    environment:
+      - PYTHONUNBUFFERED=1
