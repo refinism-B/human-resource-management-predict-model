@@ -1,0 +1,43 @@
+# 直播錄影人力預測系統
+這是一個ML專案，功能在於根據專案需求，預測需要安排的人力。
+
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/) [![Streamlit](https://img.shields.io/badge/Streamlit-Enabled-green)](https://streamlit.io/) [![Last Commit](https://img.shields.io/github/last-commit/refinism-B/human-resource-management-predict-model)](https://github.com/refinism-B/human-resource-management-predict-model/commits/main) ![Machine Learning](https://img.shields.io/badge/Tech-Machine%20Learning-blue)
+
+
+## 簡介
+- 在直播視訊行業，**人力的需求非常彈性**，根據需求可能需要8-10人，也可能只需要2-3人。
+- 高度彈性使人力安排工作非常花時間精力，因為每個專案都需客製化分派。
+- 在旺季時，一天就有2-3個案子，一週有5-6天都有案子，還得為預備未來幾週的人力。
+- 本專案期望透過模型預測的方式，減輕上述人力安排的負擔。
+
+## 作法
+- 收集過去一年半每一個專案需求及執行人力、人數。
+- 將資料用於ML模型訓練，期望模型學習到人力安排的規律。
+- 未來只要需輸入需求，模型便能預測人力。
+
+## 資料集
+1. 透過**Google Drive雲端硬碟**記錄，每次專案結束後，由工作同仁填寫。
+2. 最初的目的僅是工作紀錄，**並非以ML為目的**。
+3. 承上點，所以**原始表格並不適合用於訓練模型**。訓練使用的是經過清理轉換過後的資料，格式更加正規化、一致化。
+4. 資料共有**21個欄位，469筆資料，時間橫跨2024年1月至2025年5月底**，大部分皆為數值欄位，部分欄位採用**one-hot code**方式標示狀態（通常0代表無、1代表有）。
+
+## ML模型
+- 選擇採用較為基本、容易訓練的**Random Forest迴歸模型**，並將**20%資料設為測試集**其餘皆用於訓練。
+- 最終的模型版本在測試集的表現：**mse為0.257，rmse為0.507**。通常目標數值量級約在0-8之間，這個誤差尚可接受。
+
+## 專案用法
+- 有兩種使用方式：
+    1. 程式已經由AI編寫簡單的GUI，只需**執行根目錄的main.bat檔案**，便會執行主程式。
+    2. 在專案目錄下使用**docker-compose up**指令，將會啟動一個streamlit容器，訪問8501 port即可使用streamlit介面操作。（streamlit介面由AI編寫）
+
+## 未來展望
+1. **資料特徵**：
+    - **痛點**：**目前的特徵並未涵蓋所有可能的專案需求**，但在最初收集資料時便沒有納入，現在也已無法回溯。
+    - **改進**：在收集資料時就制定資料的schema以及欄位，保持資料完整與一致。
+2. **人員預測**：
+    - **痛點**：目前模型**僅預測「人數」並未包含人員**。
+    - **改進**：
+        1. 建立**人力資料庫**。記錄現有人力資源以及擅長項目（可以分數表示擅長程度）。
+        2. 將工作資料與人力資料合併後用於訓練，讓模型**同時學習人數與人員的安排**。
+        3. 期望模型學習到根據「**能力**」安排人員，而非死記人員。
+        3. 若人員有異動，只要**更新人力資料**，模型便可根據新的人力資料進行預測安排。
