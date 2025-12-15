@@ -42,7 +42,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # 模型路徑配置（請自行填入您的模型路徑）
-MODEL_PATH = r"/app/model/20250612_RFM.pkl"
+MODEL_PATH = os.path.join(os.getcwd(), 'model', '20250612_RFM.pkl')
 
 # 初始化 session state
 if 'model' not in st.session_state:

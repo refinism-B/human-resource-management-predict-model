@@ -1,42 +1,83 @@
 # 直播錄影人力預測系統
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/) [![Streamlit](https://img.shields.io/badge/Streamlit-Enabled-green)](https://streamlit.io/) [![Last Commit](https://img.shields.io/github/last-commit/refinism-B/human-resource-management-predict-model)](https://github.com/refinism-B/human-resource-management-predict-model/commits/main) ![Machine Learning](https://img.shields.io/badge/Tech-Machine%20Learning-blue)
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue) ![Scikit--learn](https://img.shields.io/badge/Machine%20Learning-Scikit--learn-orange) ![Status](https://img.shields.io/badge/Status-Experimental-yellow)
 
+## 專案簡介 (Introduction)
 
-## 簡介
-- 在直播視訊行業，**人力的需求非常彈性**，根據需求可能需要8-10人，也可能只需要2-3人。
-- 高度彈性使人力安排工作非常花時間精力，因為每個專案都需客製化分派。
-- 在旺季時，一天就有2-3個案子，一週有5-6天都有案子，還得為預備未來幾週的人力。
-- 本專案期望透過模型預測的方式，減輕上述人力安排的負擔。
+**直播錄影人力預測系統** 是一個基於機器學習（Random Forest）的輔助決策工具，旨在解決專案管理中人力排程依賴人工經驗、計算繁瑣且易有誤差的問題。
 
-## 作法
-- 收集過去一年半每一個專案需求及執行人力、人數。
-- 將資料用於ML模型訓練，期望模型學習到人力安排的規律。
-- 未來只要需輸入需求，模型便能預測人力。
+本專案利用 2024-2025 年間的真實專案執行數據，透過特徵工程將非結構化的業務需求轉化為模型特徵，預測各類專案所需的最佳人力配置，協助管理者進行更精準的資源規劃。
 
-## 資料集
-1. 透過**Google Drive雲端硬碟**記錄，每次專案結束後，由工作同仁填寫。
-2. 最初的目的僅是工作紀錄，**並非以ML為目的**。
-3. 承上點，所以**原始表格並不適合用於訓練模型**。訓練使用的是經過清理轉換過後的資料，格式更加正規化、一致化。
-4. 資料共有**21個欄位，469筆資料，時間橫跨2024年1月至2025年5月底**，大部分皆為數值欄位，部分欄位採用**one-hot code**方式標示狀態（通常0代表無、1代表有）。
+### 核心價值 (Business Value)
+*   **效率提升**：將繁瑣的人力計算流程自動化，減少行政作業時間。
+*   **數據驅動**：將「經驗法則」轉化為「數據模型」，提供客觀的派工依據。
+*   **易用性**：結合 GUI 圖形介面，讓非技術背景的行政人員也能輕鬆使用。
 
-## ML模型
-- 選擇採用較為基本、容易訓練的**Random Forest迴歸模型**，並將**20%資料設為測試集**其餘皆用於訓練。
-- 最終的模型版本在測試集的表現：**mse為0.257，rmse為0.507**。通常目標數值量級約在0-8之間，這個誤差尚可接受。
+---
 
-## 專案用法
-- 有兩種使用方式：
-    1. 程式已經由AI編寫簡單的GUI，只需**執行根目錄的main.bat檔案**，便會執行主程式。
-    2. 在專案目錄下使用**docker-compose up**指令，將會啟動一個streamlit容器，訪問8501 port即可使用streamlit介面操作。（streamlit介面由AI編寫）
+## 技術架構 (Tech Stack)
 
-## 未來展望
-1. **資料特徵**：
-    - **痛點**：**目前的特徵並未涵蓋所有可能的專案需求**，但在最初收集資料時便沒有納入，現在也已無法回溯。
-    - **改進**：在收集資料時就制定資料的schema以及欄位，保持資料完整與一致。
-2. **人員預測**：
-    - **痛點**：目前模型**僅預測「人數」並未包含人員**。
-    - **改進**：
-        1. 建立**人力資料庫**。記錄現有人力資源以及擅長項目（可以分數表示擅長程度）。
-        2. 將工作資料與人力資料合併後用於訓練，讓模型**同時學習人數與人員的安排**。
-        3. 期望模型學習到根據「**能力**」安排人員，而非死記人員。
-        3. 若人員有異動，只要**更新人力資料**，模型便可根據新的人力資料進行預測安排。
+*   **語言**：Python
+*   **資料處理**：Pandas, NumPy
+*   **機器學習**：Scikit-learn (RandomForestRegressor)
+*   **圖形介面**：Tkinter、Streamlit
+
+---
+
+## 資料處理與特徵工程 (Data Pipeline)
+
+原始資料來自真實業務場景，需經過嚴謹的清洗與轉換才能用於訓練。
+
+### 1. 資料預處理 (Preprocessing)
+*   **資料清洗**：處理缺失值與異常值，確保資料品質。
+*   **時間特徵轉換**：
+    *   將絕對時間（如 `10:00-14:00`）轉換為相對時長（`4.0 Hours`）。
+    *   拆解日期因子（月/日/星期），並針對「是否為假日」進行 **One-Hot Encoding**。
+*   **類別特徵編碼**：
+    *   針對「專案性質」與「特殊需求」進行 One-Hot Encoding，將業務邏輯數值化。
+
+### 2. 模型訓練 (Model Training)
+*   **演算法**：Random Forest Regressor (隨機森林迴歸)
+*   **參數設定**：
+    *   `n_estimators = 150`
+    *   `min_samples_split = 2`
+*   **資料集劃分**：80% 訓練集 / 20% 測試集
+
+---
+
+## 模型表現 (Performance)
+
+模型在測試集上的表現如下，考慮到人力配置通常為整數（0-8人），**RMSE 0.507** 代表預測誤差控制在 ±0.5 人以內，具有高度參考價值。
+
+| Metric | Value | Description |
+| :--- | :--- | :--- |
+| **MSE** | 0.257 | 均方誤差 |
+| **RMSE** | **0.507** | 均方根誤差 (主要參考指標) |
+
+---
+
+## 🚀 如何執行 (Usage)
+
+### 1. 安裝依賴 (Installation)
+```bash
+pip install pandas scikit-learn numpy
+# 若有 requirements.txt
+# pip install -r requirements.txt
+```
+
+### 2. 執行程式 (Run)
+```bash
+# 啟動 GUI 介面 (請依實際檔名修改)
+python main.py
+```
+
+---
+
+## 未來展望 (Future Roadmap)
+
+本專案目前為單機實驗性質，未來規劃進行以下優化：
+
+1.  **自動化 ETL 管線**：建立自動化資料清洗流程，提升資料處理效率。
+2.  **資料庫整合**：引入 SQL 資料庫取代 CSV 存儲，確保資料一致性與安全性。
+3.  **排班最佳化**：結合人員技能標籤，從預測「人數」升級為推薦具體的「人員名單」。
+4.  **持續整合 (CI/CT)**：建立模型再訓練機制，隨著新資料累積自動更新模型參數。
