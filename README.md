@@ -1,6 +1,6 @@
 # 直播錄影人力預測系統
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue) ![Scikit--learn](https://img.shields.io/badge/Machine%20Learning-Scikit--learn-orange) ![Status](https://img.shields.io/badge/Status-Experimental-yellow)
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue) ![Scikit--learn](https://img.shields.io/badge/Machine%20Learning-Scikit--learn-orange) ![Streamlit](https://img.shields.io/badge/GUI-Streamlit-red) ![Status](https://img.shields.io/badge/Status-Experimental-yellow)
 
 ## 專案簡介 (Introduction)
 
@@ -11,7 +11,7 @@
 ### 核心價值 (Business Value)
 *   **效率提升**：將繁瑣的人力計算流程自動化，減少行政作業時間。
 *   **數據驅動**：將「經驗法則」轉化為「數據模型」，提供客觀的派工依據。
-*   **易用性**：結合 GUI 圖形介面，讓非技術背景的行政人員也能輕鬆使用。
+*   **易用性**：提供 **Tkinter** 與 **Streamlit** 兩種圖形介面，讓非技術背景的行政人員也能輕鬆使用。
 
 ---
 
@@ -20,7 +20,7 @@
 *   **語言**：Python
 *   **資料處理**：Pandas, NumPy
 *   **機器學習**：Scikit-learn (RandomForestRegressor)
-*   **圖形介面**：Tkinter、Streamlit
+*   **圖形介面**：Tkinter, Streamlit
 
 ---
 
@@ -56,20 +56,28 @@
 
 ---
 
-## 🚀 如何執行 (Usage)
+## 如何執行 (Usage)
 
-### 1. 安裝依賴 (Installation)
+本專案提供兩種執行方式，方便不同習慣的使用者操作。
+
+### 0. 環境準備 (Prerequisites)
+首次使用前，請確保已安裝 Python 環境並安裝所需套件：
 ```bash
-pip install pandas scikit-learn numpy
-# 若有 requirements.txt
-# pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
-### 2. 執行程式 (Run)
-```bash
-# 啟動 GUI 介面 (請依實際檔名修改)
-python main.py
-```
+### 1-1. Tkinter GUI (桌面應用程式)
+適合習慣傳統視窗操作的使用者。
+1.  找到專案目錄下的 `tkinter.bat` 檔案。
+2.  **雙擊執行**，即可啟動應用程式視窗。
+
+### 1-2. Streamlit Web App (網頁介面)
+適合習慣瀏覽器操作的使用者，介面更為現代化。
+1.  找到專案目錄下的 `streamlit.bat` 檔案。
+2.  **雙擊執行**，系統將自動開啟瀏覽器並進入操作頁面。
+3.  **注意事項**：
+    *   啟動後，請在介面上的「模型路徑」欄位中，填入模型檔案的**絕對路徑**。
+    *   模型檔案位置範例：`C:\Users\YourName\Project\model\20250612_RFM.pkl`
 
 ---
 
