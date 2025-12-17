@@ -1,6 +1,6 @@
 # 直播錄影人力預測系統
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue) ![Scikit--learn](https://img.shields.io/badge/Machine%20Learning-Scikit--learn-orange) ![Streamlit](https://img.shields.io/badge/GUI-Streamlit-red) ![Status](https://img.shields.io/badge/Status-Experimental-yellow)
+![Python](https://img.shields.io/badge/Python-3.11%2B-blue) ![Scikit--learn](https://img.shields.io/badge/Machine%20Learning-Scikit--learn-orange) ![Gradio](https://img.shields.io/badge/GUI-Gradio-red) ![Status](https://img.shields.io/badge/Status-Experimental-yellow)
 
 ## 專案簡介（Introduction）
 
@@ -11,7 +11,7 @@
 ### 核心價值（Business Value）
 *   **效率提升**：將繁瑣的人力計算流程自動化，減少行政作業時間。
 *   **數據驅動**：將「經驗法則」轉化為「數據模型」，提供客觀的派工依據。
-*   **易用性**：提供 **Tkinter** 與 **Streamlit** 兩種圖形介面，讓非技術背景的行政人員也能輕鬆使用。
+*   **易用性**：提供 **Tkinter** 與 **Gradio** 兩種圖形介面，讓非技術背景的行政人員也能輕鬆使用。
 
 ---
 
@@ -20,17 +20,17 @@
 *   **語言**：Python
 *   **資料處理**：Pandas, NumPy
 *   **機器學習**：Scikit-learn（RandomForestRegressor）
-*   **圖形介面**：Tkinter, Streamlit
+*   **圖形介面**：Tkinter, Gradio
 
 ---
 
-## 💻 介面展示（Interface Preview）
+## 介面展示（Interface Preview）
 
 本專案提供兩種操作介面，分別對應不同的使用場景：
 
-### 1. Streamlit Web App（現代化網頁版）
+### 1. Gradio Web App（現代化網頁版）
 適合瀏覽器操作，介面美觀直覺。
-![Streamlit Demo](https://i.meee.com.tw/usKQOZh.png)
+![Gradio Demo](https://i.meee.com.tw/aylepi6.png)
 
 ### 2. Tkinter GUI（原生桌面版）
 適合輕量化、無需瀏覽器的本地操作環境。
@@ -86,13 +86,11 @@ pip install -r ./deploy/requirements.txt
 1.  找到專案目錄下的 `tkinter.bat` 檔案。
 2.  **雙擊執行**，即可啟動應用程式視窗。
 
-### 1-2. Streamlit Web App（網頁介面）
+### 1-2. Gradio Web App（網頁介面）
 適合習慣瀏覽器操作的使用者，介面更為現代化。
-1.  找到專案目錄下的 `streamlit.bat` 檔案。
-2.  **雙擊執行**，系統將自動開啟瀏覽器並進入操作頁面。
-3.  **注意事項**：
-    *   啟動後，請在介面上的「模型路徑」欄位中，填入模型檔案的**絕對路徑**。
-    *   模型檔案位置範例：`C:\Users\YourName\Project\model\20250612_RFM.pkl`
+1.  找到專案目錄下的 `gradio.bat` 檔案。
+2.  **雙擊執行**，系統將自動執行啟動指令。
+3.  **開啟瀏覽器**，輸入網址127.0.0.1:7860並前往，即可進入操作介面。
 
 ---
 
