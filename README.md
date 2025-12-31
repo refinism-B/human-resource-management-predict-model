@@ -1,3 +1,14 @@
+---
+title: Human Resource Prediction
+emoji: 🎥
+colorFrom: blue
+colorTo: green
+sdk: gradio
+sdk_version: 5.0.0
+app_file: app.py
+pinned: false
+license: apache-2.0
+---
 # Live Streaming Manpower Prediction System
 
 ![Python](https://img.shields.io/badge/Python-3.11%2B-blue) ![Scikit--learn](https://img.shields.io/badge/Machine%20Learning-Scikit--learn-orange) ![Gradio](https://img.shields.io/badge/GUI-Gradio-red) ![Status](https://img.shields.io/badge/Status-Experimental-yellow)
