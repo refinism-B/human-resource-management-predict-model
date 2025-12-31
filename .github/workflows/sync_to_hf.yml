@@ -16,4 +16,4 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git push --force https://bevisrefiner:$HF_TOKEN@huggingface.co/spaces/bevisrefiner/human-resource-prediction main
+          git push --force https://bevisrefiner:$HF_TOKEN@huggingface.co/spaces/bevisrefiner/human-resource-prediction master
