@@ -16,4 +16,14 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git push --force https://bevisrefiner:$HF_TOKEN@huggingface.co/spaces/bevisrefiner/human-resource-prediction master
+          # 1. 初始化 Git LFS
+          git lfs install
+          
+          # 2. 設定使用者資訊（避免 Git 報錯）
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          
+          # 3. 強制推送並處理分支對應
+          # 注意：這裡使用 master:main 是因為 Hugging Face Spaces 預設讀取 main 分支
+          # 如果你的 GitHub 分支是 master，這樣寫可以確保它能正確部署在 HF 上
+          git push --force https://bevisrefiner:$HF_TOKEN@huggingface.co/spaces/bevisrefiner/human-resource-prediction master:main
