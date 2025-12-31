@@ -1,2 +1,2 @@
-python gradio_app.py
+python app.py
 pause
