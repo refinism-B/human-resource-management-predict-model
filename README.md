@@ -9,7 +9,7 @@ pinned: false
 ---
 # Live Streaming Manpower Prediction System
 
-![Python](https://img.shields.io/badge/Python-3.11%2B-blue) ![Scikit--learn](https://img.shields.io/badge/Machine%20Learning-Scikit--learn-orange) ![Gradio](https://img.shields.io/badge/GUI-Gradio-red) ![Status](https://img.shields.io/badge/Status-Experimental-yellow)
+![Python](https://img.shields.io/badge/Python-3.11%2B-blue) ![Scikit-learn](https://img.shields.io/badge/Machine%20Learning-Scikit_learn-orange) ![Gradio](https://img.shields.io/badge/GUI-Gradio-red) ![Status](https://img.shields.io/badge/Status-Experimental-yellow)
 
 ## Introduction
 
@@ -59,12 +59,29 @@ The raw data is derived from actual business scenarios and undergoes rigorous cl
 *   **Categorical Feature Encoding**:
     *   Applies One-Hot Encoding to "Project Type" and "Technical Requirements" to digitize business logic.
 
-### 2. Model Training
-*   **Algorithm**: Random Forest Regressor
-*   **Parameters**:
-    *   `n_estimators = 150`
-    *   `min_samples_split = 2`
-*   **Dataset Split**: 80% Training / 20% Testing
+### 2. Model Training Pipeline
+The training process is automated via `code/Train.py` and involves the following steps:
+
+1.  **Data Loading**: Reads raw data from the configured path.
+2.  **Preprocessing**:
+    *   Removes irrelevant columns (ID, Project Name, Date).
+    *   Applies **One-Hot Encoding** to categorical features (e.g., 'Job Type').
+    *   Splits data into Features (X) and Labels (y).
+3.  **Data Splitting**: Divides data into 80% training set and 20% testing set to ensure objective evaluation.
+4.  **Hyperparameter Tuning**:
+    *   Uses **GridSearchCV** with 5-fold Cross-Validation.
+    *   Optimizes parameters like `n_estimators` (Number of trees) and `min_samples_split` (Leaf node splitting condition) to prevent overfitting.
+5.  **Model Evaluation**:
+    *   Calculates MSE, RMSE, and R-squared scores on the test set.
+    *   The best model is selected based on the lowest validation error.
+6.  **Serialization**: The final model is wrapped in a dictionary containing both the model object and feature metadata, then saved as a `.pkl` file for deployment.
+
+*   **Algorithm**: Random Forest Regressor (Ensemble Learning)
+*   **Key Parameters Tuned**:
+    *   `n_estimators`: [50, 100, 150, 200]
+    *   `max_depth`: [None, 10, 20, 30]
+    *   `min_samples_split`: [2, 5, 10]
+
 
 ---
 

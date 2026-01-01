@@ -6,7 +6,7 @@ from datetime import datetime
 
 # --- helper functions ---
 
-def find_model_path(filename="20250612_RFM.pkl"):
+def find_model_path(filename="20260101_RFM.pkl"):
     """
     Recursively search for the model file in the current directory and subdirectories.
     """
@@ -20,10 +20,20 @@ def load_model(path):
     try:
         if not os.path.exists(path):
             return None, "File not found"
-        model = joblib.load(path)
-        return model, "Model loaded successfully"
+        
+        loaded_obj = joblib.load(path)
+        
+        # Check if the loaded object is a dictionary (new format) or the model itself (old format)
+        if isinstance(loaded_obj, dict) and 'model' in loaded_obj:
+            model = loaded_obj['model']
+            return model, "Model loaded successfully"
+        else:
+            # Backward compatibility or if the file IS the model
+            return loaded_obj, "Model loaded successfully"
+            
     except Exception as e:
         return None, str(e)
+
 
 # --- Global Model Variable ---
 # We will try to load it at startup

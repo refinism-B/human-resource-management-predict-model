@@ -5,8 +5,27 @@ import joblib
 import pandas as pd
 
 # 載入模型
-model_path = r"C:\Users\add41\Documents\Data_Engineer\Project\human-resource-management-predict-model\model\20250612_RFM.pkl"
-model = joblib.load(model_path)
+# model_path = r"C:\Users\add41\Documents\Data_Engineer\Project\human-resource-management-predict-model\model\20250612_RFM.pkl"
+# Update to new model path (using relative path for better portability if running from root, but keeping absolute as fallback or preference)
+# Provided path is absolute, let's try to keep it simple but correct.
+import os
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+model_path = os.path.join(base_dir, "model", "20260101_RFM.pkl")
+
+if not os.path.exists(model_path):
+    messagebox.showerror("錯誤", f"找不到模型檔案: {model_path}")
+    exit()
+
+try:
+    loaded_obj = joblib.load(model_path)
+    if isinstance(loaded_obj, dict) and 'model' in loaded_obj:
+        model = loaded_obj['model']
+    else:
+        model = loaded_obj
+except Exception as e:
+    messagebox.showerror("錯誤", f"模型載入失敗: {e}")
+    exit()
+
 
 # 建立主視窗
 root = tk.Tk()
