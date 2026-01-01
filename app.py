@@ -90,16 +90,16 @@ def predict_single(
         # Format result
         total_manpower = predictions['人數'].iloc[0]
         
-        # Detailed breakdown string
+        # Breakdown string - change to 1 decimal place
         breakdown_text = f"### 預測總人力: {total_manpower:.1f} 人\n\n"
         breakdown_text += "#### 詳細配置:\n"
         
         position_data = predictions.iloc[0][:-1] # Exclude total
         for pos, val in position_data.items():
-            breakdown_text += f"- **{pos}**: {val:.2f}\n"
+            breakdown_text += f"- **{pos}**: {val:.1f}\n"
             
-        return breakdown_text, predictions
-        
+        return breakdown_text, predictions.round(1)
+
     except Exception as e:
         return f"Prediction Error: {str(e)}", None
 
@@ -124,8 +124,12 @@ def predict_batch(file_obj):
                     '機動人數', '花絮人數', '視訊切換人數', '視訊連線人數', '人數']
         predictions = pd.DataFrame(pred_data, columns=pred_col)
         
+        # Round to 1 decimal place
+        predictions = predictions.round(1)
+        
         temp_filename = f"prediction_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
         predictions.to_csv(temp_filename, index=False)
+
         
         return predictions, temp_filename
         

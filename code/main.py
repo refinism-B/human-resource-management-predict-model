@@ -133,9 +133,9 @@ def predict():
             tree.heading(col, text=col)  # 設定欄位名稱
             tree.column(col, width=80, anchor="center")  # 設定欄位寬度與對齊方式
 
-        # 插入數據，並格式化為小數點後兩位
+        # 插入數據，並格式化為小數點後一位
         for row in output.values:
-            formatted_row = [f"{val:.2f}" for val in row]  # 保留小數點後兩位
+            formatted_row = [f"{val:.1f}" for val in row]  # 保留小數點後一位
             tree.insert("", "end", values=formatted_row)
 
     except Exception as e:
