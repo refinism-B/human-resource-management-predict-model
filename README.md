@@ -9,7 +9,8 @@ pinned: false
 ---
 # Live Streaming Manpower Prediction System
 
-![Python](https://img.shields.io/badge/Python-3.11%2B-blue) ![Scikit-learn](https://img.shields.io/badge/Machine%20Learning-Scikit_learn-orange) ![Gradio](https://img.shields.io/badge/GUI-Gradio-red) ![Status](https://img.shields.io/badge/Status-Experimental-yellow)
+![Python](https://img.shields.io/badge/Python-3.11%2B-blue) ![Scikit-learn](https://img.shields.io/badge/Machine%20Learning-Scikit_learn-orange) ![Gradio](https://img.shields.io/badge/GUI-Gradio-red) ![Status](https://img.shields.io/badge/Status-Experimental-yellow) [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/bevisrefiner/human-resource-prediction)
+
 
 ## Introduction
 
@@ -35,7 +36,13 @@ Leveraging real-world project execution data from 2024-2025, this project transf
 
 ## Interface Preview
 
-This project provides two interfaces tailored to different usage scenarios:
+This project provides interfaces tailored to different usage scenarios:
+
+### 🚀 Online Demo (Hugging Face Spaces)
+The project's user prediction interface has been deployed to Hugging Face Spaces and is ready for use.
+[**Try it now!**](https://huggingface.co/spaces/bevisrefiner/human-resource-prediction)
+
+![HF Space Demo](https://i.meee.com.tw/gc5l3Bl.png)
 
 ### 1. Gradio Web App (Modern Web Interface)
 Ideal for browser-based operations with a sleek and intuitive design.
