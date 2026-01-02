@@ -42,8 +42,6 @@ This project provides interfaces tailored to different usage scenarios:
 The project's user prediction interface has been deployed to Hugging Face Spaces and is ready for use.
 [**Try it now!**](https://huggingface.co/spaces/bevisrefiner/human-resource-prediction)
 
-![HF Space Demo](https://i.meee.com.tw/gc5l3Bl.png)
-
 ### 1. Gradio Web App (Modern Web Interface)
 Ideal for browser-based operations with a sleek and intuitive design.
 ![Gradio Demo](https://i.meee.com.tw/aylepi6.png)
